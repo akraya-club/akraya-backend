@@ -11,12 +11,12 @@ parser.add_argument('--repetition_penalty', type=float, help='Repetition penalty
 parser.add_argument('--last_n_tokens', type=int, help='Number of last tokens for repetition penalty', default=64)
 parser.add_argument('--seed', type=int, help='Seed value for sampling tokens', default=-1)
 parser.add_argument('--batch_size', type=int, help='Batch size for evaluating tokens in a single prompt', default=512)
-parser.add_argument('--threads', type=int, help='Number of threads for evaluating tokens', default=16)
+parser.add_argument('--threads', type=int, help='Number of threads for evaluating tokens', default=4)
 parser.add_argument('--stream', action='store_true', help='Whether to stream the generated text', default=True)
 parser.add_argument('--reset', action='store_true', help='Whether to reset the model state before generating text', default=False)
 args = parser.parse_args()
 
-print("Used parameters:")
+print("Using Default Parameters:")
 for arg in vars(args):
     print(f"  --{arg}: {getattr(args, arg)}")
 
@@ -25,7 +25,7 @@ if args.question is None:
 
 print("\nModel: Booting")
 
-llm = AutoModelForCausalLM.from_pretrained("TheBloke/Llama-2-13B-Chat-GGML") # TheBloke/Llama-2-7B-Chat-GGML IS FASTER
+llm = AutoModelForCausalLM.from_pretrained("TheBloke/Llama-2-13B-Chat-GGML") # TheBloke/Llama-2-7B-Chat-GGML IS FASTER BUT Not that Acurate
 print("Model: Booted")
 
 print("Model: Starting")
